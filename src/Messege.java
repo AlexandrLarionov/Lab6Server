@@ -1,6 +1,6 @@
 import java.io.Serializable;
 // класс команды, который передается от клиента на сервер
-public class Message implements Serializable {
+public class Messege implements Serializable {
     Commander.CommandType type;
     String argument;
     Ticket ticket = new Ticket();
@@ -9,12 +9,12 @@ public class Message implements Serializable {
     public Message(boolean isEnd) {
         this.isEnd = isEnd;
     }
-    public Message(Commander.CommandType type, String argument, boolean metaFromScript) {
+    public Messege(Commander.CommandType type, String argument, boolean metaFromScript) {
         this.argument = argument;
         this.type = type;
         this.metaFromScript = metaFromScript;
     }
-    public Message(Ticket ticket, Commander.CommandType type, String argument, boolean metaFromScript) {
+    public Messege(Ticket ticket, Commander.CommandType type, String argument, boolean metaFromScript) {
         this.argument = argument;
         this.type = type;
         this.ticket = ticket;
