@@ -6,7 +6,7 @@ public class Messege implements Serializable {
     Ticket ticket = new Ticket();
     boolean metaFromScript;
     boolean isEnd = false;
-    public Message(boolean isEnd) {
+    public Messege(boolean isEnd) {
         this.isEnd = isEnd;
     }
     public Messege(Commander.CommandType type, String argument, boolean metaFromScript) {
