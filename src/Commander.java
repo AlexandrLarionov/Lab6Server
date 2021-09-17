@@ -22,13 +22,14 @@ public class Commander {
         this.fromScript = fromScript;
         this.ticket = ticket;
     }
+
     public void ArgumentChanger(String argument) {
         this.argument = argument;
     }
     public void TypeChanger(CommandType type) {
         this.type = type;
     }
-    public void run() throws IOException, ParserConfigurationException {
+    public void run() throws IOException {
         logger.info("running command");
         try {
             switch (type) {
@@ -38,6 +39,7 @@ public class Commander {
                 case clear: this.clear();break;
                 case exit: this.exit();break;
                 case add: this.add();break;
+                case saveserv: this.saveserv();break;
                 case insert_at: this.insert_at();break;
                 case add_if_min: this.add_if_min();break;
                 case average_price: this.average_price();break;
@@ -99,6 +101,13 @@ public class Commander {
         exitStatus = true;
         outputStream.flush();
     }
+    public void saveserv() throws IOException {
+        logger.info("'SaveServ' command was detected");
+        outputStream.writeUTF("This session finished");
+        save();
+        exitStatus = true;
+        outputStream.flush();
+    }
 
 
     public void add() throws IOException {
@@ -125,6 +134,10 @@ public class Commander {
             logger.info("Answer was sent");
         }
     }
+
+
+
+
     public void insert_at() throws IOException {
         logger.info("'insert_at' command was detected");
         try {
@@ -197,6 +210,7 @@ public class Commander {
         outputStream.writeUTF(average_price);
     }
 
+
     public void count_by_price() throws IOException {
         try {
             double arg_price = Double.parseDouble(argument);
@@ -250,7 +264,7 @@ public class Commander {
             writter.write("</Ticket>");
             writter.close();
             System.out.println("The command was executed");
-
+            //outputStream.writeUTF("You were disconnected by the ADMIN. Please close this Session and start again, if you want");
             logger.info("Collection was saved to disk");
         } catch (NullPointerException e) {
             logger.info("Collection was not saved to disk");
@@ -270,6 +284,6 @@ public class Commander {
 
     public enum CommandType {
         help,info,show,add, update,remove_by_id,clear,save,insert_at,execute_script, add_if_min,
-        shuffle,average_price,count_by_price,add_if_max ,exit, mode
+        shuffle,average_price,count_by_price,add_if_max ,exit, saveserv
     }
 }

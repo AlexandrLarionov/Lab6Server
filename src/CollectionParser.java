@@ -14,13 +14,11 @@ import java.util.*;
 import java.util.logging.Logger;
 public class CollectionParser {
     File file;
-    DataOutputStream outputStream;
+   // DataOutputStream outputStream;
     private final Logger logger = Logger.getLogger("server.fileCollectionReader");
-    public CollectionParser(File file, DataOutputStream outputStream){
-        this.outputStream = outputStream;
-        this.file = file;
+    public CollectionParser(){
     }
-    public Vector<Ticket> readCollection(File file) throws ParserConfigurationException, SAXException, IOException {
+    public Vector<Ticket> readCollection() throws ParserConfigurationException, SAXException, IOException {
         FileInputStream fileInputStream = null;
         try {
             String Input = System.getenv("Input");
